@@ -1,12 +1,28 @@
 import { Stack, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Post from "./Post";
+import { PostType } from "../types/interface";
 
 const Posts = () => {
   const { currentUser } = useContext(AuthContext);
-  const [getPosts, setGetPosts] = useState([{}]);
+  const titleRef = useRef({ value: "" });
+  const [getPosts, setGetPosts] = useState<PostType[]>([
+    {
+      content: "",
+      created_at: "",
+      id: 0,
+      title: "",
+      updated_at: "",
+      user: {
+        username: "",
+        email: "",
+        firstname: "",
+        lastname: "",
+      },
+    },
+  ]);
   const options = {
     url: "https://strapi-crea.jcloud-ver-jpc.ik-server.com/posts",
     method: "GET",
@@ -28,9 +44,10 @@ const Posts = () => {
   };
   useEffect(() => {
     fetchPosts();
-  }, []);
-  console.log(getPosts);
-
+  }, [titleRef]);
+  getPosts.sort((a, b) =>
+    a.created_at < b.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
+  );
   return (
     <Stack>
       {getPosts ? (

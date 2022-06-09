@@ -4,7 +4,7 @@ import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailField from "../components/Inputs/EmailField";
 import PasswordField from "../components/Inputs/PasswordField";
-import NameField from "../components/Inputs/TextField";
+import TextFieldInput from "../components/Inputs/TextField";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
@@ -45,9 +45,17 @@ const Register = () => {
       <h1>register</h1>
       <form onSubmit={handleSignup}>
         <Stack spacing={2}>
-          <NameField nameRef={usernameRef} label={"Username"} id={"username"} />
-          <NameField nameRef={fnameRef} label={"First Name"} id={"fname"} />
-          <NameField nameRef={lnameRef} label={"Last Name"} id={"lname"} />
+          <TextFieldInput
+            nameRef={usernameRef}
+            label={"Username"}
+            id={"username"}
+          />
+          <TextFieldInput
+            nameRef={fnameRef}
+            label={"First Name"}
+            id={"fname"}
+          />
+          <TextFieldInput nameRef={lnameRef} label={"Last Name"} id={"lname"} />
           <EmailField emailRef={emailRef} />
           <PasswordField
             passwordRef={passwordRef}

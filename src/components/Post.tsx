@@ -8,6 +8,7 @@ import { PostType } from "../types/interface";
 
 export default function Post(props: any) {
   const postData: PostType = props.postData;
+
   const dateCreated = new Date(postData.created_at);
 
   const dateFormated = `${(dateCreated.getMonth() + 1)
@@ -35,7 +36,7 @@ export default function Post(props: any) {
             <MoreVertIcon />
           </IconButton>
         } */
-        title={postData.user.username}
+        title={postData.user.username ? postData.user.username : "Anonymous"}
         subheader={dateFormated}
       />
       <CardContent>
