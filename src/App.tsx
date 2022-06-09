@@ -46,8 +46,10 @@ function App() {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    if (currentUser.jwt) {
+      fetchUsers();
+    }
+  }, [currentUser]);
   return (
     <div className="App">
       <BrowserRouter>

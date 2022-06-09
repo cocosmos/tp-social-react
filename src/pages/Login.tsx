@@ -20,7 +20,7 @@ const Login = () => {
         identifier: emailRef.current.value,
         password: passwordRef.current.value,
       })
-      .then(function (response: { data: any }) {
+      .then(function (response) {
         console.log(response.data);
         const user = response.data;
         dispatch({ type: "LOGIN", payload: user });

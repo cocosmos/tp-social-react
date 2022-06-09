@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Stack, TextField } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
@@ -37,9 +37,9 @@ const NewPost = () => {
   };
 
   return (
-    <Box>
-      <form onSubmit={handleNewPost}>
-        {/* <TextFieldInput nameRef={titleRef} label={"Title"} id={"title"} /> */}
+    <form onSubmit={handleNewPost}>
+      {/* <TextFieldInput nameRef={titleRef} label={"Title"} id={"title"} /> */}
+      <Stack>
         <TextField
           id={"title"}
           label={"Title"}
@@ -51,10 +51,11 @@ const NewPost = () => {
           autoComplete="on"
         />
         <TextField
-          id="outlined-multiline-static"
-          label="Multiline"
+          id="content"
+          label="Content"
           multiline
           rows={4}
+          variant="filled"
           fullWidth
           inputRef={contentRef}
         />
@@ -62,13 +63,12 @@ const NewPost = () => {
           type={"submit"}
           variant="contained"
           color="primary"
-          fullWidth
           size="large"
         >
-          Create
+          New Post
         </Button>
-      </form>
-    </Box>
+      </Stack>
+    </form>
   );
 };
 

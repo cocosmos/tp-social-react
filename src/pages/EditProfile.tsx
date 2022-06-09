@@ -17,7 +17,6 @@ const EditProfile = () => {
   const bioRef = useRef({ value: "" });
   const navigate = useNavigate();
   let user = currentUser;
-  // user.user["username"] = "u33uesffsf";
   const handleEditProfile = async (e: any) => {
     e.preventDefault();
 
@@ -42,16 +41,15 @@ const EditProfile = () => {
         user.user[key] = getForm[key];
       }
     });
-    console.log(user);
 
-    const dataToSend = JSON.stringify(data);
     axios
-      .put(url, dataToSend, {
+      .put(url, data, {
         headers: headers,
       })
       .then((response) => {
         console.log(response.status);
         dispatch({ type: "LOGIN", payload: user });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);

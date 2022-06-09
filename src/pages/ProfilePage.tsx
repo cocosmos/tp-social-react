@@ -77,17 +77,19 @@ const ProfilePage = (props: { userData: User }) => {
         </Button>
       </Stack>
       <Divider />
-      {getPosts ? (
-        getPosts.map((postData) => {
-          return (
-            <Box key={postData.id}>
-              <Post postData={postData} />
-            </Box>
-          );
-        })
-      ) : (
-        <Typography>Loading...</Typography>
-      )}
+      <Stack>
+        {getPosts ? (
+          getPosts.map((postData) => {
+            return (
+              <Box key={postData.id}>
+                <Post postData={postData} />
+              </Box>
+            );
+          })
+        ) : (
+          <Typography>Loading...</Typography>
+        )}
+      </Stack>
     </>
   );
 };

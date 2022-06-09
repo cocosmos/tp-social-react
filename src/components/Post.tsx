@@ -31,7 +31,7 @@ const Post = (props: any) => {
     <Card sx={{ maxWidateCreatedh: 345 }}>
       <CardActionArea
         onClick={() => {
-          navigate(postData.user?.id ? `user/${postData.user?.id}` : "");
+          navigate(postData.user?.id ? `/user/${postData.user?.id}` : "");
         }}
       >
         <CardHeader
@@ -41,12 +41,8 @@ const Post = (props: any) => {
         />
       </CardActionArea>
       <CardContent>
-        <Typography variant="h6" color="text.secondary">
-          {postData.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {postData.content}
-        </Typography>
+        <Typography variant="h6">{postData.title}</Typography>
+        <Typography variant="body2">{postData.content}</Typography>
       </CardContent>
     </Card>
   );

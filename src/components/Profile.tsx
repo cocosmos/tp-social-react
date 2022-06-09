@@ -10,8 +10,9 @@ const Profile = () => {
   return (
     <Stack maxWidth={500} textAlign="center" alignItems={"center"}>
       <Avatar />
-      <Typography>{currentUser.user.firstname}</Typography>
-      <Typography>{currentUser.user.lastname}</Typography>
+      <Typography variant="body1" gutterBottom component="div">
+        {currentUser.user.firstname} {currentUser.user.lastname}
+      </Typography>
       <Typography>{currentUser.user.bio}</Typography>
       <Button
         type={"button"}
