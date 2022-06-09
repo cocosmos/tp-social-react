@@ -2,9 +2,9 @@ import { Button, Stack } from "@mui/material";
 import axios from "axios";
 import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import EmailField from "../components/Inputs.tsx/EmailField";
-import PasswordField from "../components/Inputs.tsx/PasswordField";
-import NameField from "../components/Inputs.tsx/TextField";
+import EmailField from "../components/Inputs/EmailField";
+import PasswordField from "../components/Inputs/PasswordField";
+import NameField from "../components/Inputs/TextField";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
@@ -16,41 +16,28 @@ const Register = () => {
   const lnameRef = useRef({ value: "" });
   const navigate = useNavigate();
 
-  interface User {
-    username: string;
-    email: string;
-    password: string;
-    firstname: string;
-    lastname: string;
-    bio?: string;
-  }
-
   const handleSignup = async (e: any) => {
     e.preventDefault();
     const url =
       "https://strapi-crea.jcloud-ver-jpc.ik-server.com/auth/local/register";
 
-    try {
-      axios
-        .post(url, {
-          username: usernameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-          firstname: fnameRef.current.value,
-          lastname: lnameRef.current.value,
-        })
-        .then(function (response) {
-          console.log(response.data);
-          const user = response.data;
-          dispatch({ type: "LOGIN", payload: user });
-          navigate("/");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .post(url, {
+        username: usernameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        firstname: fnameRef.current.value,
+        lastname: lnameRef.current.value,
+      })
+      .then(function (response) {
+        console.log(response.data);
+        const user = response.data;
+        dispatch({ type: "LOGIN", payload: user });
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
