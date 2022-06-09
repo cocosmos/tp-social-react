@@ -24,7 +24,7 @@ const Posts = () => {
     },
   ]);
   const options = {
-    url: "https://strapi-crea.jcloud-ver-jpc.ik-server.com/posts",
+    url: `https://strapi-crea.jcloud-ver-jpc.ik-server.com/posts`,
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -50,6 +50,7 @@ const Posts = () => {
   getPosts.sort((a, b) =>
     a.created_at < b.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
   );
+
   return (
     <Stack>
       {getPosts ? (

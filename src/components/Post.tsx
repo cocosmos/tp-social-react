@@ -6,9 +6,8 @@ import Typography from "@mui/material/Typography";
 import { PostType } from "../types/interface";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
-export default function Post(props: any) {
+const Post = (props: any) => {
   const navigate = useNavigate();
   const postData: PostType = props.postData;
   const dateCreated = new Date(postData.created_at);
@@ -32,7 +31,7 @@ export default function Post(props: any) {
     <Card sx={{ maxWidateCreatedh: 345 }}>
       <CardActionArea
         onClick={() => {
-          navigate(`user/${postData.user?.id}`);
+          navigate(postData.user?.id ? `user/${postData.user?.id}` : "");
         }}
       >
         <CardHeader
@@ -51,4 +50,5 @@ export default function Post(props: any) {
       </CardContent>
     </Card>
   );
-}
+};
+export default Post;
