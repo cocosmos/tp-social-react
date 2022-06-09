@@ -1,6 +1,6 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Avatar, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailField from "../components/Inputs/EmailField";
 import PasswordField from "../components/Inputs/PasswordField";
@@ -17,6 +17,8 @@ const EditProfile = () => {
   const bioRef = useRef({ value: "" });
   const navigate = useNavigate();
   let user = currentUser;
+  const [username, setUsername] = useState(currentUser.user.username);
+
   const handleEditProfile = async (e: any) => {
     e.preventDefault();
 
@@ -56,14 +58,24 @@ const EditProfile = () => {
       });
   };
   return (
-    <Stack>
-      <form onSubmit={handleEditProfile}>
-        <TextFieldInput
-          nameRef={usernameRef}
+    <form onSubmit={handleEditProfile}>
+      <Stack spacing={3} alignItems={"center"}>
+        <Avatar
+          alt={currentUser.user.firstname + " " + currentUser.user.lastname}
+          sx={{ width: 200, height: 200 }}
+          src={`https://avatars.dicebear.com/api/big-smile/${username}.svg`}
+        />
+        <Typography variant="h4">{username}</Typography>
+        <TextField
+          inputRef={usernameRef}
           label={"Username"}
           id={"username"}
           required={false}
+          variant="filled"
+          fullWidth
+          onChange={(e) => setUsername(e.target.value)}
         />
+
         <TextFieldInput
           nameRef={fnameRef}
           label={"First Name"}
@@ -93,27 +105,29 @@ const EditProfile = () => {
           variant="filled"
           inputRef={bioRef}
         />
-        <Button
-          type={"button"}
-          variant="contained"
-          color="secondary"
-          size="large"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Return
-        </Button>
-        <Button
-          type={"submit"}
-          variant="contained"
-          color="primary"
-          size="large"
-        >
-          Edit
-        </Button>
-      </form>
-    </Stack>
+        <Stack direction={"row"} justifyContent={"center"} spacing={3}>
+          <Button
+            type={"button"}
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Return
+          </Button>
+          <Button
+            type={"submit"}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Edit
+          </Button>
+        </Stack>
+      </Stack>
+    </form>
   );
 };
 

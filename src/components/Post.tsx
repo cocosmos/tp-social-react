@@ -27,6 +27,8 @@ const Post = (props: any) => {
     .toString()
     .padStart(2, "0")}:${dateCreated.getSeconds().toString().padStart(2, "0")}`;
 
+  const username = postData.user?.username ?? "Anonymous";
+
   return (
     <Card sx={{ maxWidateCreatedh: 345 }}>
       <CardActionArea
@@ -35,8 +37,14 @@ const Post = (props: any) => {
         }}
       >
         <CardHeader
-          avatar={<Avatar></Avatar>}
-          title={postData.user?.username ?? "Anonymous"}
+          avatar={
+            <Avatar
+              alt={username}
+              sx={{ height: 60, width: 60 }}
+              src={`https://avatars.dicebear.com/api/big-smile/${username}.svg`}
+            />
+          }
+          title={username}
           subheader={dateFormated}
         />
       </CardActionArea>

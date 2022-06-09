@@ -1,6 +1,6 @@
-import { Button, Stack } from "@mui/material";
+import { Avatar, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailField from "../components/Inputs/EmailField";
 import PasswordField from "../components/Inputs/PasswordField";
@@ -15,6 +15,7 @@ const Register = () => {
   const fnameRef = useRef({ value: "" });
   const lnameRef = useRef({ value: "" });
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
 
   const handleSignup = async (e: any) => {
     e.preventDefault();
@@ -42,13 +43,23 @@ const Register = () => {
 
   return (
     <>
-      <h1>register</h1>
+      <h1>Register</h1>
       <form onSubmit={handleSignup}>
-        <Stack spacing={2}>
-          <TextFieldInput
-            nameRef={usernameRef}
+        <Stack spacing={3} alignItems={"center"}>
+          <Avatar
+            alt={username}
+            sx={{ width: 200, height: 200 }}
+            src={`https://avatars.dicebear.com/api/big-smile/${username}.svg`}
+          />
+          <Typography variant="h4">{username}</Typography>
+          <TextField
+            inputRef={usernameRef}
             label={"Username"}
             id={"username"}
+            required={false}
+            variant="filled"
+            fullWidth
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextFieldInput
             nameRef={fnameRef}
@@ -73,6 +84,16 @@ const Register = () => {
           </Button>
         </Stack>
       </form>
+      <Button
+        type={"button"}
+        variant="contained"
+        color="secondary"
+        size="large"
+        onClick={() => navigate("/login")}
+        sx={{ mt: 5 }}
+      >
+        Login page
+      </Button>
     </>
   );
 };

@@ -52,7 +52,7 @@ const Posts = () => {
   );
 
   return (
-    <Stack>
+    <Stack spacing={6} mt={3}>
       {getPosts ? (
         getPosts.map((postData) => {
           return (

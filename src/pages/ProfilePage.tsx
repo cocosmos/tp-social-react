@@ -53,8 +53,12 @@ const ProfilePage = (props: { userData: User }) => {
   );
   return (
     <>
-      <Stack>
-        <Avatar alt="Remy Sharp" sx={{ width: 56, height: 56 }} />
+      <Stack spacing={3} alignItems={"center"} mb={5}>
+        <Avatar
+          alt={props.userData.username}
+          sx={{ width: 200, height: 200 }}
+          src={`https://avatars.dicebear.com/api/big-smile/${props.userData.username}.svg`}
+        />
         <Typography variant="h5" gutterBottom component="div">
           {props.userData.username}
         </Typography>
@@ -77,7 +81,7 @@ const ProfilePage = (props: { userData: User }) => {
         </Button>
       </Stack>
       <Divider />
-      <Stack>
+      <Stack spacing={5}>
         {getPosts ? (
           getPosts.map((postData) => {
             return (

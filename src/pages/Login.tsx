@@ -32,9 +32,9 @@ const Login = () => {
   };
   return (
     <>
-      <h1>login</h1>
+      <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <Stack spacing={2}>
+        <Stack spacing={3}>
           <EmailField emailRef={emailRef} />
           <PasswordField
             passwordRef={passwordRef}
@@ -52,6 +52,16 @@ const Login = () => {
           </Button>
         </Stack>
       </form>
+      <Button
+        type={"button"}
+        variant="contained"
+        color="secondary"
+        size="large"
+        sx={{ mt: 5 }}
+        onClick={() => navigate("/register")}
+      >
+        Register page
+      </Button>
     </>
   );
 };

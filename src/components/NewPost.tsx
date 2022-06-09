@@ -39,7 +39,7 @@ const NewPost = () => {
   return (
     <form onSubmit={handleNewPost}>
       {/* <TextFieldInput nameRef={titleRef} label={"Title"} id={"title"} /> */}
-      <Stack>
+      <Stack spacing={2}>
         <TextField
           id={"title"}
           label={"Title"}
@@ -57,6 +57,7 @@ const NewPost = () => {
           rows={4}
           variant="filled"
           fullWidth
+          required
           inputRef={contentRef}
         />
         <Button

@@ -10,6 +10,7 @@ import EditProfile from "./pages/EditProfile";
 import { User } from "./types/interface";
 import axios from "axios";
 import ProfilePage from "./pages/ProfilePage";
+import { Container } from "@mui/material";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -51,7 +52,7 @@ function App() {
     }
   }, [currentUser]);
   return (
-    <div className="App">
+    <Container sx={{ p: 3 }}>
       <BrowserRouter>
         <Routes>
           <Route
@@ -89,7 +90,7 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Container>
   );
 }
 
