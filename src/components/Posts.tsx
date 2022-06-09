@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../contexts/AuthContext";
@@ -15,6 +15,7 @@ const Posts = () => {
       title: "",
       updated_at: "",
       user: {
+        id: 0,
         username: "",
         email: "",
         firstname: "",
@@ -31,6 +32,7 @@ const Posts = () => {
       Authorization: `Bearer ${currentUser.jwt}`,
     },
   };
+
   const fetchPosts = () => {
     axios(options)
       .then((response) => {
@@ -40,9 +42,11 @@ const Posts = () => {
         console.log(error);
       });
   };
+
   useEffect(() => {
     fetchPosts();
   }, []);
+
   getPosts.sort((a, b) =>
     a.created_at < b.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
   );
@@ -50,7 +54,11 @@ const Posts = () => {
     <Stack>
       {getPosts ? (
         getPosts.map((postData) => {
-          return <Post postData={postData} />;
+          return (
+            <Box key={postData.id}>
+              <Post postData={postData} />
+            </Box>
+          );
         })
       ) : (
         <Typography>Loading...</Typography>

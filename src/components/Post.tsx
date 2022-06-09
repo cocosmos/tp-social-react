@@ -1,16 +1,17 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { PostType } from "../types/interface";
+import { CardActionArea } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 export default function Post(props: any) {
+  const navigate = useNavigate();
   const postData: PostType = props.postData;
-
   const dateCreated = new Date(postData.created_at);
-
   const dateFormated = `${(dateCreated.getMonth() + 1)
     .toString()
     .padStart(2, "0")}/${dateCreated
@@ -28,17 +29,18 @@ export default function Post(props: any) {
     .padStart(2, "0")}:${dateCreated.getSeconds().toString().padStart(2, "0")}`;
 
   return (
-    <Card sx={{ maxWidateCreatedh: 345 }} key={postData.id}>
-      <CardHeader
-        avatar={<Avatar aria-label={props.fname}></Avatar>}
-        /* action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        } */
-        title={postData.user.username ? postData.user.username : "Anonymous"}
-        subheader={dateFormated}
-      />
+    <Card sx={{ maxWidateCreatedh: 345 }}>
+      <CardActionArea
+        onClick={() => {
+          navigate(`user/${postData.user?.id}`);
+        }}
+      >
+        <CardHeader
+          avatar={<Avatar></Avatar>}
+          title={postData.user?.username ?? "Anonymous"}
+          subheader={dateFormated}
+        />
+      </CardActionArea>
       <CardContent>
         <Typography variant="h6" color="text.secondary">
           {postData.title}
