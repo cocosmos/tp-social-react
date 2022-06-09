@@ -4,6 +4,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Post from "./Post";
 import { PostType } from "../types/interface";
+import NewPost from "./NewPost";
 
 const Posts = () => {
   const { currentUser } = useContext(AuthContext);

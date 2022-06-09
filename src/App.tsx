@@ -19,7 +19,6 @@ function App() {
   ]);
   const ProtectedRoute = ({ children }: any) => {
     if (currentUser.jwt) {
-      console.log(currentUser);
       return children;
     } else {
       return <Navigate to="/register" />;

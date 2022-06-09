@@ -8,19 +8,25 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <Stack maxWidth={500} textAlign="center" alignItems={"center"} spacing={2}>
+    <Stack
+      maxWidth={500}
+      textAlign="center"
+      alignItems={"center"}
+      spacing={2}
+      sx={{ backgroundColor: "#e7fdff", p: 3, borderRadius: 20 }}
+    >
       <Avatar
         alt={currentUser.user.firstname + " " + currentUser.user.lastname}
         sx={{ width: 80, height: 80 }}
         src={`https://avatars.dicebear.com/api/big-smile/${currentUser.user.username}.svg`}
       />
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         {currentUser.user.username}
       </Typography>
-      <Typography variant="body1" gutterBottom component="div">
+      <Typography variant="h6" gutterBottom component="div">
         {currentUser.user.firstname} {currentUser.user.lastname}
       </Typography>
-      <Typography>{currentUser.user.bio}</Typography>
+      <Typography variant="body1">{currentUser.user.bio}</Typography>
       <Button
         type={"button"}
         variant="contained"

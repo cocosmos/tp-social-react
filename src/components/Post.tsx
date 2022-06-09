@@ -30,7 +30,7 @@ const Post = (props: any) => {
   const username = postData.user?.username ?? "Anonymous";
 
   return (
-    <Card sx={{ maxWidateCreatedh: 345 }}>
+    <Card sx={{ maxWidateCreatedh: 345, backgroundColor: "#d9fbff" }}>
       <CardActionArea
         onClick={() => {
           navigate(postData.user?.id ? `/user/${postData.user?.id}` : "");

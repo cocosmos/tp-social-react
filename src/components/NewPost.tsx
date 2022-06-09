@@ -1,8 +1,7 @@
 import { Box, Button, Stack, TextField } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import TextFieldInput from "./Inputs/TextField";
 
 const NewPost = () => {
   const titleRef = useRef({ value: "" });
