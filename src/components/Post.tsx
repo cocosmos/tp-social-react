@@ -2,37 +2,48 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { PostType } from "../types/interface";
 
-export default function RecipeReviewCard() {
+export default function Post(props: any) {
+  const postData: PostType = props.postData;
+  const dateCreated = new Date(postData.created_at);
+
+  const dateFormated = `${(dateCreated.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}/${dateCreated
+    .getDate()
+    .toString()
+    .padStart(2, "0")}/${dateCreated
+    .getFullYear()
+    .toString()
+    .padStart(4, "0")} ${dateCreated
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${dateCreated
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}:${dateCreated.getSeconds().toString().padStart(2, "0")}`;
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidateCreatedh: 345 }} key={postData.id}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
+        avatar={<Avatar aria-label={props.fname}></Avatar>}
+        /* action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        } */
+        title={postData.user.username}
+        subheader={dateFormated}
       />
       <CardContent>
+        <Typography variant="h6" color="text.secondary">
+          {postData.title}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {postData.content}
         </Typography>
       </CardContent>
     </Card>

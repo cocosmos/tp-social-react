@@ -7,4 +7,11 @@ export interface User {
   bio?: string;
 }
 
-export interface Post {}
+export interface PostType {
+  content: string;
+  created_at: string;
+  id: number;
+  title: string;
+  updated_at: string;
+  user: User;
+}
