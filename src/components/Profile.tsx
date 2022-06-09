@@ -36,7 +36,7 @@ const Profile = () => {
           navigate("edit");
         }}
       >
-        Modifier
+        Modify
       </Button>
     </Stack>
   );
