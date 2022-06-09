@@ -6,11 +6,13 @@ import { AuthContext } from "../contexts/AuthContext";
 const Profile = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+
   return (
     <Stack maxWidth={500} textAlign="center" alignItems={"center"}>
       <Avatar />
       <Typography>{currentUser.user.firstname}</Typography>
       <Typography>{currentUser.user.lastname}</Typography>
+      <Typography>{currentUser.user.bio}</Typography>
       <Button
         type={"button"}
         variant="contained"

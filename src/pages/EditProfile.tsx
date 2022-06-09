@@ -8,7 +8,7 @@ import TextFieldInput from "../components/Inputs/TextField";
 import { AuthContext } from "../contexts/AuthContext";
 
 const EditProfile = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, dispatch } = useContext(AuthContext);
   const emailRef = useRef({ value: "" });
   const passwordRef = useRef({ value: "" });
   const usernameRef = useRef({ value: "" });
@@ -16,7 +16,8 @@ const EditProfile = () => {
   const lnameRef = useRef({ value: "" });
   const bioRef = useRef({ value: "" });
   const navigate = useNavigate();
-
+  let user = currentUser;
+  // user.user["username"] = "u33uesffsf";
   const handleEditProfile = async (e: any) => {
     e.preventDefault();
 
@@ -24,6 +25,7 @@ const EditProfile = () => {
     const headers = {
       Authorization: `Bearer ${currentUser.jwt}`,
     };
+
     let getForm: any = {
       username: usernameRef.current.value,
       email: emailRef.current.value,
@@ -37,8 +39,10 @@ const EditProfile = () => {
     Object.keys(getForm).map((key: any) => {
       if (getForm[key]) {
         data[key] = getForm[key];
+        user.user[key] = getForm[key];
       }
     });
+    console.log(user);
 
     const dataToSend = JSON.stringify(data);
     axios
@@ -47,6 +51,7 @@ const EditProfile = () => {
       })
       .then((response) => {
         console.log(response.status);
+        dispatch({ type: "LOGIN", payload: user });
       })
       .catch((error) => {
         console.log(error);
