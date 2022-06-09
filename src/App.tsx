@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { AuthContext } from "./contexts/AuthContext";
 import Login from "./pages/Login";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
               </ProtectedRoute>
             }
           />

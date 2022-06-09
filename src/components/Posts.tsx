@@ -7,7 +7,6 @@ import { PostType } from "../types/interface";
 
 const Posts = () => {
   const { currentUser } = useContext(AuthContext);
-  const titleRef = useRef({ value: "" });
   const [getPosts, setGetPosts] = useState<PostType[]>([
     {
       content: "",
@@ -36,7 +35,6 @@ const Posts = () => {
     axios(options)
       .then((response) => {
         setGetPosts(response.data);
-        console.log(response.status);
       })
       .catch((error) => {
         console.log(error);
@@ -44,7 +42,7 @@ const Posts = () => {
   };
   useEffect(() => {
     fetchPosts();
-  }, [titleRef]);
+  }, []);
   getPosts.sort((a, b) =>
     a.created_at < b.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
   );
@@ -52,7 +50,6 @@ const Posts = () => {
     <Stack>
       {getPosts ? (
         getPosts.map((postData) => {
-          console.log(postData);
           return <Post postData={postData} />;
         })
       ) : (

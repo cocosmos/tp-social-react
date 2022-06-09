@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 
-const EmailField = ({ emailRef }: any) => {
+const EmailField = ({ emailRef, required }: any) => {
   return (
     <TextField
       id="email"
@@ -8,7 +8,7 @@ const EmailField = ({ emailRef }: any) => {
       type={"email"}
       variant="filled"
       inputRef={emailRef}
-      required
+      required={required}
       fullWidth
       color="secondary"
       autoComplete="on"

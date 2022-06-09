@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-const PasswordField = ({ passwordRef, id, label }: any) => {
+const PasswordField = ({ passwordRef, id, label, required }: any) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ const PasswordField = ({ passwordRef, id, label }: any) => {
       <InputLabel htmlFor="passwordLogin">{label}</InputLabel>
       <FilledInput
         autoFocus={false}
-        required
+        required={required}
         id={id}
         type={showPassword ? "text" : "password"}
         inputRef={passwordRef}

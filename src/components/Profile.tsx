@@ -1,8 +1,10 @@
 import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   return (
     <Stack maxWidth={500} textAlign="center" alignItems={"center"}>
@@ -15,6 +17,9 @@ const Profile = () => {
         color="primary"
         fullWidth
         size="large"
+        onClick={() => {
+          navigate("edit");
+        }}
       >
         Modifier
       </Button>

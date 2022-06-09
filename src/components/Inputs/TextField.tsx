@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 
-const TextFieldInput = ({ nameRef, label, id }: any) => {
+const TextFieldInput = ({ nameRef, label, id, required }: any) => {
   return (
     <TextField
       id={id}
@@ -9,7 +9,7 @@ const TextFieldInput = ({ nameRef, label, id }: any) => {
       variant="filled"
       type={"text"}
       fullWidth
-      required
+      required={required}
       autoComplete="on"
     />
   );

@@ -16,8 +16,6 @@ const NewPost = () => {
     const headers = {
       Authorization: `Bearer ${currentUser.jwt}`,
     };
-    console.log("create");
-
     axios
       .post(
         url,
@@ -57,6 +55,7 @@ const NewPost = () => {
           label="Multiline"
           multiline
           rows={4}
+          fullWidth
           inputRef={contentRef}
         />
         <Button
